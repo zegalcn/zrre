@@ -312,6 +312,9 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
+    rubyXL (3.4.25)
+      nokogiri (>= 1.10.8)
+      rubyzip (>= 1.3.0)
     rubyzip (2.3.2)
     rugged (1.0.1)
     sass (3.7.4)
@@ -423,6 +426,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-lsp
+  rubyXL
   sassc-rails
   selenium-webdriver
   sidekiq

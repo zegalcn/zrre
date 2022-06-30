@@ -42,12 +42,19 @@ gem 'sidekiq-cron'
 
 gem 'nokogiri'
 
+gem 'roo'
+
+# gem 'rails_admin'
+
 # https://github.com/gazay/gon
 
 # Config
 
 # https://github.com/jhass/configurate
 gem 'configurate'
+
+# https://github.com/ledermann/rails-settings
+gem 'ledermann-rails-settings'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
