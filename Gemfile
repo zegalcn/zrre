@@ -68,6 +68,7 @@ group :development, :test do
   gem 'factory_bot_rails'
 
   gem 'pry', '~> 0.13.1'
+  gem 'pry-rails'
 end
 
 group :development do
