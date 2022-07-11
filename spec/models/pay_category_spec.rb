@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe PayCategory, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "with 2 or more comments" do
+    it "orders them in reverse chronologically" do
+      pc1 = PayCategory.create!(name: 'category 1')
+      pc2 = PayCategory.create!(name: 'category 2', parent: pc1)
+      expect(pc1.children.include?(pc2)).to be
+    end
+  end
 end

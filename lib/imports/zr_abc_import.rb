@@ -13,25 +13,34 @@ class ZrAbcImport
 
   filters = []
 
+  def initialize(doc, year)
+    @doc = CSV.parse(doc, headers: true)
+    @year = year
+  end
 
-  #foreach(path, headers: true, row_sep: "\r\n")
-  def import(doc, year)
+  def import
 
-    messages = check_headers(doc.headers)
+    # messages = check_headers(@doc.headers)
 
     ignores = COLUMNS[:ignores] << [:month, :name, :department, :mode]
 
-    csv = doc.each do |row|
-      empolyee = Employee.where(COLUMNS[:name]).first_or_initialize
+    @doc.each do |row|
+      employee = Employee.where(name: row[COLUMNS[:name]]).first_or_initialize
       department = Department.where(name: row[COLUMNS[:department]]).first_or_initialize
-      empolyee.department = department
+      employee.department = department
 
       # TODO mode convert
       # mode = row[COLUMNS[:mode]] 
       
       row.each do |key, value|
         next if ignores.include?(key)
-        
+        next if value.nil?
+
+        category = parent_filter(key)
+        next if category.nil?
+
+        pay = Pay.create!(department: department, employee: employee, category_id: category.id, 
+          year: @year, month: convert_month(row[COLUMNS[:month]]), sum: value)
       end
     end
   end
@@ -68,5 +77,11 @@ class ZrAbcImport
     end
 
     return messages
+  end
+
+  MONTH = {"一月" => 1, "二月" => 2, "三月" => 3, "四月" => 4, "五月" => 5, "六月" => 6, "七月" => 7, "八月" => 8, "九月" => 9, "十月" => 10, "十一月" => 11, "十二月" => 12}
+
+  def convert_month(m)
+    MONTH[m]
   end
 end
