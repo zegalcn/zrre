@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_29_004331) do
     t.integer "department_id", null: false
     t.integer "employee_id", null: false
     t.integer "category_id", null: false
+    t.integer "mode", default: 0
     t.integer "year", null: false
     t.integer "month", null: false
     t.float "sum", default: 0.0
