@@ -85,6 +85,7 @@ group :development do
   gem 'brakeman'
 
   gem 'haml_lint', require: false
+  gem "erb2haml", require: false
   gem "pronto", require: false
   gem "pronto-eslint", require: false
   gem "pronto-haml", require: false

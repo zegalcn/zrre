@@ -5,4 +5,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  get 'import', to: 'import/show'
+  post 'import', to: 'import/import' 
 end

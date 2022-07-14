@@ -29,8 +29,7 @@ class ZrAbcImport
       department = Department.where(name: row[COLUMNS[:department]]).first_or_initialize
       employee.department = department
 
-      # TODO mode convert
-      # mode = row[COLUMNS[:mode]] 
+      mode = convert_mode(row[COLUMNS[:mode]])
       
       row.each do |key, value|
         next if ignores.include?(key)
@@ -39,7 +38,7 @@ class ZrAbcImport
         category = parent_filter(key)
         next if category.nil?
 
-        pay = Pay.create!(department: department, employee: employee, category_id: category.id, 
+        pay = Pay.create!(department: department, employee: employee, category_id: category.id, mode: mode,
           year: @year, month: convert_month(row[COLUMNS[:month]]), sum: value)
       end
     end
@@ -83,5 +82,10 @@ class ZrAbcImport
 
   def convert_month(m)
     MONTH[m]
+  end
+
+  MODE = { "合同制" => 11, "恒品劳务" => 13 }
+  def convert_mode(m)
+    MODE[m]
   end
 end

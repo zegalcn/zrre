@@ -41,13 +41,14 @@ RSpec.describe ZrAbcImport do
     it "" do
       @import.import
       expect(Pay.count).to match(1)
-      
+
       pay = Pay.first
       expect(pay.employee.name).to match('D')
       expect(pay.department.name).to match('综合部')
       expect(pay.year).to match(2022)
       expect(pay.month).to match(4)
       expect(pay.category.name).to match('岗位工资')
+      expect(pay.category.parent.name).to match('工资总额')
     end
   end
 end
