@@ -1,0 +1,12 @@
+
+= form_with do |form|
+  .mb-3
+    %select.form-select{ name: 'category', "aria-label" => "Default select example"}
+      %option{:selected => "selected"} Open this select menu
+      %option{:value => "1"} One
+      %option{:value => "2"} Two
+      %option{:value => "3"} Three
+  .mb-3
+    = form.file_field :list
+  .mb-3
+    = form.submit "Submit", { class: "btn btn-primary" }

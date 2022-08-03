@@ -32,9 +32,17 @@ gem 'font-awesome-rails'
 gem 'hamlit-rails'
 gem 'sassc-rails'
 
+# Authentication
+
+gem "devise", "4.8.1"
+
 # https://viewcomponent.org/
 gem 'view_component'
 
+gem 'simple_form'
+
+# File Uploading
+gem "carrierwave"
 gem 'image_processing', '~> 1.2'
 
 gem 'sidekiq'
